@@ -14,10 +14,10 @@ const profit = data.map((data) => {
     }
 });
 
-let max = profit[0].income;
-let min = profit[0].income;
+let max = min = profit[0].income;
 for (const element of profit) {
     if(max < element.income ){
+        max = element.income;
         omzetTerbesar.data = 'Omzet Terbesar'
         omzetTerbesar.idTransaction = element.idTransaction
         omzetTerbesar.profit = element.income

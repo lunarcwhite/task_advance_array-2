@@ -14,25 +14,26 @@ const profit = data.map((data) => {
     }
 });
 
-let max = min = profit[0].income;
-profit.forEach(element => {
-    if(max >= element.income ){
+let max = profit[0].income;
+let min = profit[0].income;
+for (const element of profit) {
+    if(max < element.income ){
+        omzetTerbesar.data = 'Omzet Terbesar'
         omzetTerbesar.idTransaction = element.idTransaction
         omzetTerbesar.profit = element.income
     }
-    if (min <= element.income) {
-        omzetTerbesar.idTransaction = element.idTransaction
-        omzetTerbesar.profit = element.income
-    }
-});
+    if (min > element.income) {
+        min = element.income;
+        omzetTerkecil.data = 'Omzet Terkecil'
+        omzetTerkecil.idTransaction = element.idTransaction
+        omzetTerkecil.profit = element.income
+    }   
+}
 
 const totalIncome = profit.reduce((result, item) => {
     return result + item.income
 }, 0);
 
-console.log(max);
-
-
 console.log(`Total transaksi : USD ${totalIncome}`);
-console.log(`Omzet terbesar : ${omzetTerbesar}`);
-console.log(`Omzet terkecil : ${omzetTerkecil}`);
+console.log(omzetTerbesar);
+console.log(omzetTerkecil);
